@@ -1,0 +1,16 @@
+header{
+    height: 100px;
+    background-color: #FFC107;
+}
+
+#menu{
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+#logo{
+    font-size: 30px;
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px;
+}
