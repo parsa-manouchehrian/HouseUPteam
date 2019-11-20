@@ -23,3 +23,8 @@ header{
 article{
     margin: 10px;
 }
+
+.activeStar{
+    color: #FFC107;
+
+}
