@@ -1,17 +1,22 @@
+body{
+    background-color: #E5E5E5;
+}
+
 header{
-    height: 100px;
+    margin: 25px;
+    height: 50px;
     background-color: #FFC107;
 }
 
 #menu{
     font-size: 30px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #logo{
     font-size: 30px;
+    font-weight: 500;
     color: white;
-    margin-top: 20px;
     margin-left: 20px;
 }
 

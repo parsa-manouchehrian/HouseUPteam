@@ -1,0 +1,67 @@
+#content {
+    margin: 25px;
+}
+
+.serviceCost {
+    float: right;
+}
+
+#nextPage {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: #607D8B;
+    text-align: center;
+    font-size: 150%;
+}
+#nextPage a {
+    color: white;
+    text-decoration: none;
+}
+#arrow {
+    float: right;
+}
+
+.checkboxContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkboxContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #607D8B;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkboxContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkboxContainer .checkmark:after {
+    content: '\2B24';
+    color:white;
+    top: 1px;
+    left: 6px;
+}

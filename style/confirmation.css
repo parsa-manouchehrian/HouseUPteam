@@ -1,0 +1,26 @@
+#content {
+    margin: 25px;
+    padding-bottom: 25px;
+}
+
+h4 {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+#nextPage {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: #607D8B;
+    text-align: center;
+    font-size: 150%;
+
+}
+#nextPage a {
+    color: white;
+    text-decoration: none;
+}
