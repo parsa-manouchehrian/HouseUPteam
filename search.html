@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>SEARCH</title>
-
-
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
   </head>
 
   <body>
@@ -51,46 +51,36 @@
       </div>
     </article>
 
-    <footer></footer>
-<!-- 
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <!-- <footer></footer> -->
 
-    
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="scripts/General.js"></script>
 
     <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
-        authDomain: "houseup-b34e1.firebaseapp.com",
-        databaseURL: "https://houseup-b34e1.firebaseio.com",
-        projectId: "houseup-b34e1",
-        storageBucket: "houseup-b34e1.appspot.com",
-        messagingSenderId: "980464254442",
-        appId: "1:980464254442:web:d2f128dca2d663c8288693",
-        measurementId: "G-Z4RG137FW0"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script> -->
-    
-    <!-- <script>
-      var database = firebase.database();
-      var topUserPostsRef = firebase.database().ref('Contractors').orderByChild('Title');
-      topUserPostsRef.array.forEach(element => {
-        let addDiv = document.getElementById('addDiv');
-        addDiv.innerHTML += createService(element);
-      });
+      function everything() {
 
-      function createService(item){
-        return `<div class="card">
+        console.log(db);
+        var topUserPostsRef = database.ref("Contractors").orderByChild("Name");
+        console.log(topUserPostsRef);
+        topUserPostsRef.array.forEach(element => {
+          let addDiv = document.getElementById("addDiv");
+          addDiv.innerHTML += createService(element);
+        });
+
+        function createService(item) {
+          return (
+            `<div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-3 m-1">
               <img src="images/plumber.jpg" height="120" width="100" />
             </div>
             <div class="col-5">
-              <p>`+item.Name+`</p>
-              <p>`+item.Category+`</p>
+              <p>` +
+            item.Name +
+            `</p>
+              <p>` +
+            item.Category +
+            `</p>
               <i class="fa fa-star activeStar"></i>
               <i class="fa fa-star activeStar"></i>
               <i class="fa fa-star activeStar"></i>
@@ -98,9 +88,11 @@
               <i class="fa fa-star-o"></i>
             </div>
           </div>
-        </div>`;
-      } -->
+        </div>`
+          );
+        }
+      }
+      everything();
     </script>
-    <script src="scripts/General.js"></script>
   </body>
 </html>
