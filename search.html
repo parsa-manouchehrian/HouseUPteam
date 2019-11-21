@@ -31,20 +31,22 @@
       <h5>Top Rated Services</h5>
       <br />
 
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-3 m-1">
-              <img src="images/plumber.jpg" height="120" width="100" />
-            </div>
-            <div class="col-5">
-              <p>Name</p>
-              <p>Category</p>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star-o"></i>
+      <div id="addDiv">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-3 m-1">
+                <img src="images/plumber.jpg" height="120" width="100" />
+              </div>
+              <div class="col-5">
+                <p>Name</p>
+                <p>Category</p>
+                <i class="fa fa-star activeStar"></i>
+                <i class="fa fa-star activeStar"></i>
+                <i class="fa fa-star activeStar"></i>
+                <i class="fa fa-star activeStar"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -57,14 +59,23 @@
 
     <script>
       function everything() {
+        db.collection("Contractors")
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              let addDiv = document.getElementById("addDiv");
+              console.log(doc.data());
 
-        console.log(db);
-        var topUserPostsRef = database.ref("Contractors").orderByChild("Name");
-        console.log(topUserPostsRef);
-        topUserPostsRef.array.forEach(element => {
-          let addDiv = document.getElementById("addDiv");
-          addDiv.innerHTML += createService(element);
-        });
+              addDiv.innerHTML += createService(doc.data());
+            });
+          });
+
+        // var topUserPostsRef = database.ref("Contractors").orderByChild("Name");
+        // console.log(topUserPostsRef);
+        // topUserPostsRef.array.forEach(element => {
+        //   let addDiv = document.getElementById("addDiv");
+        //   addDiv.innerHTML += createService(element);
+        // });
 
         function createService(item) {
           return (
