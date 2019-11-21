@@ -34,27 +34,18 @@
                 <p>$XX</p>
             </div>
             
-            <div id='nextPage'><a href=''>
+            <div id='nextPage'>
                 <input id='confirm' type='button'></input>
                 <p>Confirm</p>
-            </a></div>
+            </div>
         </article>
 
         <footer id='footer'></footer>
 
         <script src="scripts/general.js"></script>
 
-        <!-- Firebase -->
-        
-        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-        <script src="/__/firebase/7.4.0/firebase-app.js"></script>
-
-        <!-- Add Firebase products that you want to use -->
-        <script src="/__/firebase/7.4.0/firebase-auth.js"></script>
-        <script src="/__/firebase/7.4.0/firebase-firestore.js"></script>
-
-        <!-- Initialize Firebase -->
-        <script src="/__/firebase/init.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 
         <script>
         // Your web app's Firebase configuration
@@ -68,28 +59,14 @@
             appId: "1:980464254442:web:d2f128dca2d663c8288693",
             measurementId: "G-Z4RG137FW0"
         };
-        </script>
-
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
-        <script>
-        const firebase = require("firebase");
-        // Required for side-effects
-        require("firebase/firestore");
         
-        // // Initialize Firebase
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Initialize Cloud Firestore through Firebase
-        firebase.initializeApp({
-        apiKey: 'AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao',
-        authDomain: 'houseup-b34e1.firebaseapp.com',
-        projectId: 'houseup-b34e1'
-        });
-
         var db = firebase.firestore();
+        </script>
 
+        <script>
         document.getElementById('confirm').onclick = addOrder
 
         // Add the order to the Orders DB
