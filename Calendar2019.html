@@ -1,17 +1,11 @@
 
 <!DOCTYPE HTML>
-<html><head><title>Calendar 2019</title>
+<html><head>
+<title>Calendar 2019</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<link rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"/>
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="style/GeneralStyle.css">
 <link rel="stylesheet" href="style/calendarStyle.css">
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 </head>
 <body>
 <header id="header"></header>
@@ -88,7 +82,8 @@
         let date = document.getElementById("date").value;
         console.log("got date!");
         console.log(date);
-        return date
+        location.href = "confirmation.html";
+        localStorage.setItem('Date', date);
     }
     document.getElementById("confirm").addEventListener("click", getDate);
 </script>
