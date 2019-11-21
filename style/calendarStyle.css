@@ -67,3 +67,23 @@ th.month {
     width: 20%;
     border: 2px solid #4CAF50;
 }
+#nextPage {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: #607D8B;
+}
+#confirm {
+    display: block;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background: transparent;
+    border: none;
+    font-size: 150%;
+    color: white
+}
