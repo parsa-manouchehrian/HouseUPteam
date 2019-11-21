@@ -79,9 +79,18 @@
     </form>
 </div>
 <div id='nextPage'>
-        <input id='confirm' type='button' value='Confirm'>
+        <input id='confirm' type='button' value='Review Order'>
             </div>
 <footer id="footer"> </footer>
 <script src="scripts/General.js"></script>
+<script>
+    function getDate(){
+        let date = document.getElementById("date").value;
+        console.log("got date!");
+        console.log(date);
+        return date
+    }
+    document.getElementById("confirm").addEventListener("click", getDate);
+</script>
 </body>
 </html>
