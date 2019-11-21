@@ -24,3 +24,13 @@ h4 {
     color: white;
     text-decoration: none;
 }
+#confirm {
+    display: block;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background: transparent;
+    border: none;
+    font-size: 0;
+}

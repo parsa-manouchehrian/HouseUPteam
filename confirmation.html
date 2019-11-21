@@ -33,7 +33,9 @@
                 <h6>Estimated Cost</h3>
                 <p>$XX</p>
             </div>
+            
             <div id='nextPage'><a href=''>
+                <input id='confirm' type='button'></input>
                 <p>Confirm</p>
             </a></div>
         </article>
@@ -41,5 +43,73 @@
         <footer id='footer'></footer>
 
         <script src="scripts/general.js"></script>
+
+        <!-- Firebase -->
+        
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="/__/firebase/7.4.0/firebase-app.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="/__/firebase/7.4.0/firebase-auth.js"></script>
+        <script src="/__/firebase/7.4.0/firebase-firestore.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
+            authDomain: "houseup-b34e1.firebaseapp.com",
+            databaseURL: "https://houseup-b34e1.firebaseio.com",
+            projectId: "houseup-b34e1",
+            storageBucket: "houseup-b34e1.appspot.com",
+            messagingSenderId: "980464254442",
+            appId: "1:980464254442:web:d2f128dca2d663c8288693",
+            measurementId: "G-Z4RG137FW0"
+        };
+        </script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+
+        <script>
+        const firebase = require("firebase");
+        // Required for side-effects
+        require("firebase/firestore");
+        
+        // // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Initialize Cloud Firestore through Firebase
+        firebase.initializeApp({
+        apiKey: 'AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao',
+        authDomain: 'houseup-b34e1.firebaseapp.com',
+        projectId: 'houseup-b34e1'
+        });
+
+        var db = firebase.firestore();
+
+        document.getElementById('confirm').onclick = addOrder
+
+        // Add the order to the Orders DB
+        function addOrder() {
+            db.collection('Orders').add({
+                ContractorID: localStorage.getItem('ContractorID'),
+                ContractorName: localStorage.getItem('ContactorName'),
+                Cost: localStorage.getItem('Cost'),
+                Request: localStorage.getItem('Request'),
+                Service: localStorage.getItem('Service'),
+                Status: localStorage.getItem('Status'),
+                SubmissionDate: 'Date',
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+        }
+        </script>
     </body>
 </html>
