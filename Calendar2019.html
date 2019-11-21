@@ -2,24 +2,23 @@
 <!DOCTYPE HTML>
 <html><head><title>Calendar 2019</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="style/calendarStyle.css">
-<link rel="stylesheet" href="style/GeneralStyle.css">
-<link
-      rel="stylesheet"
+
+<link rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous"/>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="style/GeneralStyle.css">
+<link rel="stylesheet" href="style/calendarStyle.css">
 </head>
 <body>
 <header id="header"></header>
 <div id="calendar">
-    <p id="title">December 2019</p>
+    <div class="title">
+    <p>December 2019</p>
+    </div>
 <table border="1">
 <tr>
     <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
@@ -70,8 +69,28 @@
     <td><span class="date">&nbsp;</span></td>
 </tr>
 </table>
+<br>
 </div>
+<div id="data">
+    <form>
+        <label for="date">Date and Time</label>
+        <input type = "date" id="date">
+        <br>
+    </form>
+</div>
+<div id='nextPage'>
+        <input id='confirm' type='button' value='Review Order'>
+            </div>
 <footer id="footer"> </footer>
 <script src="scripts/General.js"></script>
+<script>
+    function getDate(){
+        let date = document.getElementById("date").value;
+        console.log("got date!");
+        console.log(date);
+        return date
+    }
+    document.getElementById("confirm").addEventListener("click", getDate);
+</script>
 </body>
 </html>

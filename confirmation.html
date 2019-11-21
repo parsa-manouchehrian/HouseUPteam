@@ -2,59 +2,40 @@
 
 <html>
     <head>
-        <title>Confirmation</title>
+        <title>Order Confirmation</title>
 
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous"/>
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel='stylesheet' type='text/css' href='style/confirmation.css'>
-        <link rel='stylesheet' type='text/css' href='style/generalstyle.css'>
-
     </head>
 
     <body>
         <header id='header'></header>
         <article>
             <div id='content'>
-                <h4>Review Your Order</h1>
-                <h6>Company</h3>
-                <p>Name</p>
-                <h6>Service</h3>
-                <p>Service</p>
-                <h6>Date</h3>
-                <p>November 7, 2019</p>
-                <h6>Time</h3>
-                <p>12:34 PM - 1:34 PM</p>
-                <h6>Estimated Cost</h3>
-                <p>$XX</p>
+                <h4>Review Your Order</h4>
+                <h6>Company</h6>
+                <p id='companyName'></p>
+                <h6>Service</h6>
+                <p id='service'></p>
+                <h6>Date</h6>
+                <p id='date'></p>
+                <h6>Time</h6>
+                <p id='time'></p>
+                <h6>Estimated Cost</h6>
+                <p id='cost'></p>
             </div>
-            
-            <div id='nextPage'><a href=''>
-                <input id='confirm' type='button'></input>
-                <p>Confirm</p>
-            </a></div>
         </article>
+
+        <div id='nextPage'>
+            <input id='confirm' type='button' value='Confirm'>
+        </div>
 
         <footer id='footer'></footer>
 
         <script src="scripts/general.js"></script>
 
-        <!-- Firebase -->
-        
-        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-        <script src="/__/firebase/7.4.0/firebase-app.js"></script>
-
-        <!-- Add Firebase products that you want to use -->
-        <script src="/__/firebase/7.4.0/firebase-auth.js"></script>
-        <script src="/__/firebase/7.4.0/firebase-firestore.js"></script>
-
         <!-- Initialize Firebase -->
-        <script src="/__/firebase/init.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 
         <script>
         // Your web app's Firebase configuration
@@ -68,40 +49,43 @@
             appId: "1:980464254442:web:d2f128dca2d663c8288693",
             measurementId: "G-Z4RG137FW0"
         };
-        </script>
-
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
-        <script>
-        const firebase = require("firebase");
-        // Required for side-effects
-        require("firebase/firestore");
         
-        // // Initialize Firebase
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Initialize Cloud Firestore through Firebase
-        firebase.initializeApp({
-        apiKey: 'AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao',
-        authDomain: 'houseup-b34e1.firebaseapp.com',
-        projectId: 'houseup-b34e1'
-        });
-
         var db = firebase.firestore();
+        </script>
 
+        <script>
+        // Reads from local storage
+        let contractorID = localStorage.getItem('ContractorID');
+        let contractorName = localStorage.getItem('ContractorName');
+        let service = localStorage.getItem('Service');
+        let date = localStorage.getItem('Date');
+        let time = localStorage.getItem('Time');
+        let cost = localStorage.getItem('Cost');
+        
+        // Populates the order summary
+        document.getElementById('companyName').innerHTML = contractorName;
+        document.getElementById('service').innerHTML = service;
+        document.getElementById('date').innerHTML = date;
+        document.getElementById('time').innerHTML = time;
+        document.getElementById('cost').innerHTML = cost;
+
+        // Submits the order when the user clicks Confirm
         document.getElementById('confirm').onclick = addOrder
 
-        // Add the order to the Orders DB
+        // Reads from local storage and adds the order to the Orders DB
         function addOrder() {
             db.collection('Orders').add({
-                ContractorID: localStorage.getItem('ContractorID'),
-                ContractorName: localStorage.getItem('ContactorName'),
-                Cost: localStorage.getItem('Cost'),
-                Request: localStorage.getItem('Request'),
-                Service: localStorage.getItem('Service'),
-                Status: localStorage.getItem('Status'),
-                SubmissionDate: 'Date',
+                ContractorID: contractorID,
+                ContractorName: contractorName,
+                Service: service,
+                Date: date,
+                Time: time,
+                Cost: cost,
+                Status: 'Active',
+                SubmissionDate: new Date(),
             })
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
@@ -109,6 +93,8 @@
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
+
+            location.href='profile.html';
         }
         </script>
     </body>
