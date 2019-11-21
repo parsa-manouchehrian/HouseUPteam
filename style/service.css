@@ -6,6 +6,7 @@
     float: right;
 }
 
+/* Styles the nextPage div */
 #nextPage {
     display: block;
     height: 50px;
@@ -14,17 +15,28 @@
     position: fixed;
     bottom: 0px;
     background-color: #607D8B;
-    text-align: center;
-    font-size: 150%;
-}
-#nextPage a {
-    color: white;
-    text-decoration: none;
-}
-#arrow {
-    float: right;
 }
 
+/* Styles the invisible button over the nextPage div */
+#confirm {
+    display: block;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background: transparent;
+    border: none;
+    font-size: 150%;
+    color: white
+}
+
+#arrow {
+    float: right;
+    font-size: 150%;
+    color: white;
+}
+
+/* Overwrites the default checkbox and applies custom styling */
 .checkboxContainer {
     display: block;
     position: relative;
