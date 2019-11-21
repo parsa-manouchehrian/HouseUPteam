@@ -8,6 +8,7 @@ h4 {
     padding-bottom: 25px;
 }
 
+/* Styles the nextPage div */
 #nextPage {
     display: block;
     height: 50px;
@@ -17,6 +18,8 @@ h4 {
     bottom: 0px;
     background-color: #607D8B;
 }
+
+/* Styles the invisible button over the nextPage div */
 #confirm {
     display: block;
     height: 50px;
