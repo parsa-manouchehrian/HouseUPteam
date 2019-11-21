@@ -1,14 +1,16 @@
 /* Styling for the title (Month and Year) of the calendar */
-#title {
+.title{
     font: x-large Verdana, Arial, Helvetica, sans-serif;
     text-align: center;
+    display: inline;
     margin-left: auto;
     margin-right: auto;
     height: 40px;
     width: 20%;
-    background-color: #7B7B7B;
     color: black;
+    background-color: brown;
     }
+
 /* Styling for the footer */
 div.footer {
     font: small Verdana, Arial, Helvetica, sans-serif;
@@ -55,6 +57,9 @@ th.month {
     visibility: hidden;
     display:none;
     }
-#calendar{
+#data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
    
 }

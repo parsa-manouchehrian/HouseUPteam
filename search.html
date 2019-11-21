@@ -2,19 +2,7 @@
   <head>
     <title>SEARCH</title>
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link rel="stylesheet" href="style/GeneralStyle.css" />
   </head>
 
   <body>
@@ -57,7 +45,6 @@
               <i class="fa fa-star activeStar"></i>
               <i class="fa fa-star activeStar"></i>
               <i class="fa fa-star-o"></i>
-              
             </div>
           </div>
         </div>
@@ -65,8 +52,55 @@
     </article>
 
     <footer></footer>
+<!-- 
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 
-    <script></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
+        authDomain: "houseup-b34e1.firebaseapp.com",
+        databaseURL: "https://houseup-b34e1.firebaseio.com",
+        projectId: "houseup-b34e1",
+        storageBucket: "houseup-b34e1.appspot.com",
+        messagingSenderId: "980464254442",
+        appId: "1:980464254442:web:d2f128dca2d663c8288693",
+        measurementId: "G-Z4RG137FW0"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script> -->
+    
+    <!-- <script>
+      var database = firebase.database();
+      var topUserPostsRef = firebase.database().ref('Contractors').orderByChild('Title');
+      topUserPostsRef.array.forEach(element => {
+        let addDiv = document.getElementById('addDiv');
+        addDiv.innerHTML += createService(element);
+      });
+
+      function createService(item){
+        return `<div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3 m-1">
+              <img src="images/plumber.jpg" height="120" width="100" />
+            </div>
+            <div class="col-5">
+              <p>`+item.Name+`</p>
+              <p>`+item.Category+`</p>
+              <i class="fa fa-star activeStar"></i>
+              <i class="fa fa-star activeStar"></i>
+              <i class="fa fa-star activeStar"></i>
+              <i class="fa fa-star activeStar"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+          </div>
+        </div>`;
+      } -->
+    </script>
     <script src="scripts/General.js"></script>
   </body>
 </html>
