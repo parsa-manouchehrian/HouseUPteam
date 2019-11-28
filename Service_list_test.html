@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <title>Service Selection</title>
 
     <link rel='stylesheet' type='text/css' href='style/service.css'>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-    
+
 </head>
 
 <body>
     <header id='header'></header>
     <article>
         <div id='content'>
-            <label class='checkboxContainer'>
+            <!-- <label class='checkboxContainer'>
                 <input type='checkbox'>
                 <span class='checkmark'></span>
                 Service 1<span class='serviceCost'>$XX</span>
@@ -33,7 +34,7 @@
                 <input type='checkbox'>
                 <span class='checkmark'></span>
                 Service 4<span class='serviceCost'>$XX</span>
-            </label>
+            </label> -->
         </div>
     </article>
 
@@ -44,37 +45,65 @@
     <footer id='footer'></footer>
 
     <script src="scripts/general.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+
     <script>
-        // trying to load the services and their prices to load dynamically
-        function everything() {
-            db.collection("Contractors")
-                .get()
-                .then(querySnapshot => {
-                    querySnapshot.forEach(doc => {
-                        let addDiv = document.getElementById("content");
-                        console.log(doc.data());
-                        // just trying to print the services
-                        console.log(doc.data().Services);
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
+            authDomain: "houseup-b34e1.firebaseapp.com",
+            databaseURL: "https://houseup-b34e1.firebaseio.com",
+            projectId: "houseup-b34e1",
+            storageBucket: "houseup-b34e1.appspot.com",
+            messagingSenderId: "980464254442",
+            appId: "1:980464254442:web:d2f128dca2d663c8288693",
+            measurementId: "G-Z4RG137FW0"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+    </script>
 
-                        addDiv.innerHTML += createService(doc.data());
-                    });
-                });
+    <script>
+        let contractorRef = db.collection("Contractors").doc('JPPQs9Amk90ZW7rfQ7sn');
+        // Reads the contractor's services list to generate checkboxes
+        function populateServices() {
+            let services = contractorRef.get().then(function (doc) {
+                for (service in doc.data().Services) {
+                    let serviceLabel = document.createElement('div');
+                    serviceLabel.setAttribute('class', 'checkboxContainer');
+                    serviceLabel.innerHTML = '<input type="checkbox"><span class="checkmark"></span>' + service + '<span class="serviceCost">$' + doc.data().Services[service] + '</span>'
+                    document.getElementById('content').appendChild(serviceLabel);
+                    console.log(service, doc.data().Services[service]);
+                }
+            })
         }
-
-       
-        function createservice(item) {
-             let data =''
-              for (const [key, index] of item.Services.values()) {
-                  data += `<label class='checkboxcontainer'>
-                <input type='checkbox'>
-                <span class='checkmark'></span>` +
-                      key + `<span class='servicecost'>$` + index + `</span>`
-                          `</label>`;
-            }
-              return data     
-        }
-      
-      everything();
+        // querySnapshot => {
+        //         querySnapshot.forEach(doc => {
+        //             let addDiv = document.getElementById("content");
+        //             console.log(doc.data());
+        //             // just trying to print the services
+        //             console.log(doc["Services"])
+        //addDiv.innerHTML += createService(doc.data());
+        //             });
+        //         });
+        // }
+        //  function createService(item) {
+        //        for (const [key, index] of item.Services.values()) {
+        //            var data = `<label class='checkboxContainer'>
+        //          <input type='checkbox'>
+        //          <span class='checkmark'></span>` +
+        //                key + `<span class='serviceCost'>$` + index + `</span>`
+        //                    `</label>`;
+        //      }
+        //        return data
+        //  }
+        //}
+        populateServices();
     </script>
 </body>
+
 </html>

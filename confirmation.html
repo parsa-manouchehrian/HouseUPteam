@@ -4,6 +4,7 @@
     <head>
         <title>Order Confirmation</title>
 
+        <link rel='stylesheet' type='text/css' href='style/GeneralStyle.css'>
         <link rel='stylesheet' type='text/css' href='style/confirmation.css'>
     </head>
 
@@ -89,6 +90,7 @@
             })
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
+                localStorage.clear();
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
