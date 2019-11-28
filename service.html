@@ -9,6 +9,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
 
     <script>
         // Get contractor from local storage
-        let contractor = localStorage.getItem('Contractor');
+        let contractor = localStorage.getItem('contractor');
         let contractorRef = db.collection("Contractors").doc(contractor);
 
         // Reads the contractor's services list to generate checkboxes
