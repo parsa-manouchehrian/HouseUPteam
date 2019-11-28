@@ -54,26 +54,26 @@
                         let addDiv = document.getElementById("content");
                         console.log(doc.data());
                         // just trying to print the services
-                        console.log(doc["Services"])
+                        console.log(doc.data().Services);
 
-                        //addDiv.innerHTML += createService(doc.data());
+                        addDiv.innerHTML += createService(doc.data());
                     });
                 });
         }
 
        
-      //  function createService(item) {
-             
-      //        for (const [key, index] of item.Services.values()) {
-      //            var data = `<label class='checkboxContainer'>
-      //          <input type='checkbox'>
-      //          <span class='checkmark'></span>` +
-      //                key + `<span class='serviceCost'>$` + index + `</span>`
-      //                    `</label>`;
-      //      }
-      //        return data     
-      //  }
-      //}
+        function createservice(item) {
+             let data =''
+              for (const [key, index] of item.Services.values()) {
+                  data += `<label class='checkboxcontainer'>
+                <input type='checkbox'>
+                <span class='checkmark'></span>` +
+                      key + `<span class='servicecost'>$` + index + `</span>`
+                          `</label>`;
+            }
+              return data     
+        }
+      
       everything();
     </script>
 </body>
