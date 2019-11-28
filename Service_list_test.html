@@ -76,7 +76,7 @@
         function populateServices() {
             let services = contractorRef.get().then(function (doc) {
                 for (service in doc.data().Services) {
-                    let serviceLabel = document.createElement('div');
+                    let serviceLabel = document.createElement('label');
                     serviceLabel.setAttribute('class', 'checkboxContainer');
                     serviceLabel.innerHTML = '<input type="checkbox"><span class="checkmark"></span>' + service + '<span class="serviceCost">$' + doc.data().Services[service] + '</span>'
                     document.getElementById('content').appendChild(serviceLabel);
