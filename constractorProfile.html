@@ -3,6 +3,7 @@
     <title>SEARCH</title>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
   </head>
 
   <body>
@@ -44,7 +45,12 @@
 
     <script>
       function onBookClick() {
-        window.location = "service.html";
+        var user = firebase.auth().currentUser;
+        if (user == null) {
+          login();
+        } else {
+          window.location = "service.html";
+        }
       }
       //find the contractor in the databaes and get it from that
       db.collection("Contractors")
