@@ -6,9 +6,9 @@
     <title>Service Selection</title>
 
     <link rel='stylesheet' type='text/css' href='style/service.css'>
+
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
 </head>
 
 <body>
@@ -27,34 +27,16 @@
 
     <script src="scripts/general.js"></script>
 
-    <!-- Initialize Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
     <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
-            authDomain: "houseup-b34e1.firebaseapp.com",
-            databaseURL: "https://houseup-b34e1.firebaseio.com",
-            projectId: "houseup-b34e1",
-            storageBucket: "houseup-b34e1.appspot.com",
-            messagingSenderId: "980464254442",
-            appId: "1:980464254442:web:d2f128dca2d663c8288693",
-            measurementId: "G-Z4RG137FW0"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-    </script>
+        // Get contractor from local storage
+        let contractor = localStorage.getItem('Contractor');
+        let contractorRef = db.collection("Contractors").doc(contractor);
 
-    <script>
-        let contractorRef = db.collection("Contractors").doc('JPPQs9Amk90ZW7rfQ7sn');
         // Reads the contractor's services list to generate checkboxes
         function populateServices() {
             let services = contractorRef.get().then(function (doc) {
                 for (service in doc.data().Services) {
-                    // adds element into page for each service
+                    // Adds checkbox element into page for each service
                     let serviceLabel = document.createElement('label');
                     serviceLabel.setAttribute('class', 'checkboxContainer');
                     serviceLabel.innerHTML = '<input type="checkbox" id="' + service + '"><span class="checkmark"></span>' + service + '<span class="serviceCost" id="'+service +'">$' + doc.data().Services[service] + '</span>'
@@ -63,24 +45,27 @@
                 }
             })
         }
-        // checks which services were chosen
+
+        // Checks which services were chosen
         function chosenServices(){
             var totalCost = 0;
             var serviceList = [];
             let services = contractorRef.get().then(function (doc) {
-                // goes through every box and checks if they are checked
+                // Goes through every box and checks if they are checked
                 for (service in doc.data().Services) {
                     job = service;
                     let cost = document.getElementById(job);
-                    // adds the price if they are checked
+                    // Adds the price if they are checked
                     if (cost.checked){
                         totalCost += doc.data().Services[service];
                         serviceList.push(service);
                     }
                 }
+
                 console.log(totalCost);
                 console.log(serviceList);
-                //puts data into local storage
+
+                // Puts data into local storage
                 localStorage.setItem('Cost',totalCost);
                 localStorage.setItem('services', serviceList);
                 location.href = "Calendar2019.html";
@@ -88,8 +73,10 @@
             
             
         }
-        // saves the data when the bottom button is clicked
+
+        // Saves the data when the bottom button is clicked
         document.getElementById("confirm").addEventListener("click", chosenServices);
+
         populateServices();
     </script>
 </body>
