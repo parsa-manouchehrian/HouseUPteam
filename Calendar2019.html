@@ -65,8 +65,8 @@
                 <td><div class='calSqaure'><span class="date">29</span></div></td>
                 <td><div class='calSqaure'><span class="date">30</span></div></td>
                 <td><div class='calSqaure'><span class="date">31</span></div></td>
-                <td><div class='calSqaure'><span class="date">&nbsp;</span></td>
-                <td><div class='calSqaure'><span class="date">&nbsp;</span></td>
+                <td><div class='calSqaure'><span class="date">&nbsp;</span></div></td>
+                <td><div class='calSqaure'><span class="date">&nbsp;</span></div></td>
                 <td><span class="date">&nbsp;</span></td>
                 <td><span class="date">&nbsp;</span></td>
             </tr>
@@ -75,10 +75,10 @@
     </div>
     <div id="dataform">
         <form>
-            <label for="date">Date</label>
-            <input type="date" id="date">
-            <label for="date">Time 00:00 AM/PM</label>
-            <input type="time" id="time">
+            <label for="datechoice">Date</label>
+            <input type="date" id="datechoice">
+            <label for="timepick">Time 00:00 AM/PM</label>
+            <input type="time" id="timepick">
             <br>
         </form>
     </div>
@@ -106,7 +106,8 @@
         }
 
         function getDate() {
-            let time = document.getElementById("time").value;
+            let time = document.getElementById("timepick").value;
+            let dateChoice = document.getElementById("datechoice").value;
             localStorage.setItem('Date', dateChoice);
             localStorage.setItem('Time', time);
             location.href = "confirmation.html";
