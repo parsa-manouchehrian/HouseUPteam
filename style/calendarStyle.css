@@ -103,6 +103,7 @@ th.month {
     color: white;
 }
 
-td:hover {
+td:hover,
+.active {
     background-color: #607D8B;
 }

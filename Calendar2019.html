@@ -93,7 +93,12 @@
 
         for (let i=0; i < calArray.length; i++) {
             calArray[i].addEventListener('click', calendar);
-        }
+            calArray[i].addEventListener('click', function() {
+                let active = document.getElementsByClassName('active')
+                active[i].className = active[i].className.replace(' active', '');
+                this.className += 'active';
+        });
+    }
 
         function calendar() {
             let content = this.innerHTML.replace('<span class="date">', '');
