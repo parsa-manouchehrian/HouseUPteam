@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE HTML>
 <html><head>
 <title>Calendar 2019</title>
@@ -82,8 +82,10 @@
         let date = document.getElementById("date").value;
         console.log("got date!");
         console.log(date);
-        location.href = "confirmation.html";
         localStorage.setItem('Date', date);
+        location.href = "confirmation.html";
+        
+        
         
     }
     document.getElementById("confirm").addEventListener("click", getDate);
