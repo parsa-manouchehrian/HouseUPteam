@@ -94,9 +94,13 @@
         //   addDiv.innerHTML += createService(element);
         // });
 
+        function onServiceItemClick(){
+          window.location = 'Service_list_test.html';
+        }
+
         function createService(item) {
           let outPut =
-            `<div class="card">
+            `<div onClick='window.location = "Service_list_test.html"' class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-3 m-1">
