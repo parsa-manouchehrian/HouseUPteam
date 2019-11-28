@@ -63,6 +63,7 @@
                 }
             })
         }
+        // checks which services were chosen
         function chosenServices(){
             var totalCost = 0;
             var serviceList = [];
@@ -87,6 +88,7 @@
             
             
         }
+        // saves the data when the bottom button is clicked
         document.getElementById("confirm").addEventListener("click", chosenServices);
         populateServices();
     </script>
