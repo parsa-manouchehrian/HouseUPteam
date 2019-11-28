@@ -68,22 +68,32 @@
       }
 
       function everything(keyword, sort, category) {
-        let dataList = db.collection("Contractors").where("Name", ">=", keyword);
+        let dataList = db.collection("Contractors");
 
         if (sort) {
-          dataList.orderBy(sort);
+          dataList = dataList.orderBy(sort);
         }
-        
-        if (category) {
-          dataList.where("Category", "==", category);
-        }
+
         let addDiv = document.getElementById("addDiv");
 
-        addDiv.innerHTML = '';
+        addDiv.innerHTML = "";
         dataList.get().then(querySnapshot => {
           querySnapshot.forEach(doc => {
             console.log(doc.data());
-            addDiv.innerHTML += createService(doc.data());
+            if (
+              doc
+                .data()
+                .Name.toLowerCase()
+                .includes(keyword.toLowerCase())
+            ) {
+              if (category) {
+                if (doc.data().Category == category) {
+                  addDiv.innerHTML += createService(doc.data());
+                }
+              } else {
+                addDiv.innerHTML += createService(doc.data());
+              }
+            }
           });
         });
 
@@ -94,13 +104,9 @@
         //   addDiv.innerHTML += createService(element);
         // });
 
-        function onServiceItemClick(){
-          window.location = 'Service_list_test.html';
-        }
-
         function createService(item) {
           let outPut =
-            `<div onClick='window.location = "Service_list_test.html"' class="card">
+            `<div onClick='onServiceItemClick("`+item.Name+`")' class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-3 m-1">
@@ -139,6 +145,12 @@
           `<option value='` + item.Name + `'>` + item.Name + `</option>`;
         return outPut;
       }
+
+      function onServiceItemClick(item) {
+        localStorage.setItem('contractor', item);
+        window.location = "constractorProfile.html";
+      }
+
 
       getSampleList(createCategory, "Categories", "category");
       getSampleList(createCategory, "SortList", "SortBy");
