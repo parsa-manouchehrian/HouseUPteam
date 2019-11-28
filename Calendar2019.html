@@ -1,100 +1,114 @@
-﻿
-<!DOCTYPE HTML>
-<html><head>
-<title>Calendar 2019</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="style/calendarStyle.css">
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Calendar 2019</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style/calendarStyle.css">
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 </head>
+
 <body>
-<header id="header"></header>
-<div id="calendar">
-    <div class="title">
-    <p>December 2019</p>
-    </div>
-<table border="1">
-<tr>
-    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
-</tr>
-<tr>
-    <td><span class="date">1</span></td>
-    <td><span class="date">2</span></td>
-    <td><span class="date">3</span></td>
-    <td><span class="date">4</span></td>
-    <td><span class="date">5</span></td>
-    <td><span class="date">6</span></td>
-    <td><span class="date">7</span></td>
-</tr>
-<tr>
-    <td><span class="date">8</span></td>
-    <td><span class="date">9</span></td>
-    <td><span class="date">10</span></td>
-    <td><span class="date">11</span></td>
-    <td><span class="date">12</span></td>
-    <td><span class="date">13</span></td>
-    <td><span class="date">14</span></td>
-</tr>
-<tr>
-    <td><span class="date">15</span></td>
-    <td><span class="date">16</span></td>
-    <td><span class="date">17</span></td>
-    <td><span class="date">18</span></td>
-    <td><span class="date">19</span></td>
-    <td><span class="date">20</span></td>
-    <td><span class="date">21</span></td>
-</tr>
-<tr>
-    <td><span class="date">22</span></td>
-    <td><span class="date">23</span></td>
-    <td><span class="date">24</span></td>
-    <td><span class="date">25</span></td>
-    <td><span class="date">26</span></td>
-    <td><span class="date">27</span></td>
-    <td><span class="date">28</span></td>
-</tr>
-<tr>
-    <td><span class="date">29</span></td>
-    <td><span class="date">30</span></td>
-    <td><span class="date">31</span></td>
-    <td><span class="date">&nbsp;</span></td>
-    <td><span class="date">&nbsp;</span></td>
-    <td><span class="date">&nbsp;</span></td>
-    <td><span class="date">&nbsp;</span></td>
-</tr>
-</table>
-<br>
-</div>
-<div id="dataform">
-    <form>
-        <label for="date">Date</label>
-        <input type = "date" id="date">
-        <label for="date">Time 00:00 AM/PM</label>
-        <input type = "time" id="time">
+    <header id="header"></header>
+    <div id="calendar">
+        <div class="title">
+            <p>December 2019</p>
+        </div>
+        <table border="1">
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            <tr>
+                <td><div class='calSqaure'><span class="date">1</span></div></td>
+                <td><div class='calSqaure'><span class="date">2</span></div></td>
+                <td><div class='calSqaure'><span class="date">3</span></div></td>
+                <td><div class='calSqaure'><span class="date">4</span></div></td>
+                <td><div class='calSqaure'><span class="date">5</span></div></td>
+                <td><div class='calSqaure'><span class="date">6</span></div></td>
+                <td><div class='calSqaure'><span class="date">7</span></div></td>
+            </tr>
+            <tr>
+                <td><div class='calSqaure'><span class="date">8</span></div></td>
+                <td><div class='calSqaure'><span class="date">9</span></div></td>
+                <td><div class='calSqaure'><span class="date">10</span></div></td>
+                <td><div class='calSqaure'><span class="date">11</span></div></td>
+                <td><div class='calSqaure'><span class="date">12</span></div></td>
+                <td><div class='calSqaure'><span class="date">13</span></div></td>
+                <td><div class='calSqaure'><span class="date">14</span></div></td>
+            </tr>
+            <tr>
+                <td><div class='calSqaure'><span class="date">15</span></div></td>
+                <td><div class='calSqaure'><span class="date">16</span></div></td>
+                <td><div class='calSqaure'><span class="date">17</span></div></td>
+                <td><div class='calSqaure'><span class="date">18</span></div></td>
+                <td><div class='calSqaure'><span class="date">19</span></div></td>
+                <td><div class='calSqaure'><span class="date">20</span></div></td>
+                <td><div class='calSqaure'><span class="date">21</span></div></td>
+            </tr>
+            <tr>
+                <td><div class='calSqaure'><span class="date">22</span></div></td>
+                <td><div class='calSqaure'><span class="date">23</span></div></td>
+                <td><div class='calSqaure'><span class="date">24</span></div></td>
+                <td><div class='calSqaure'><span class="date">25</span></div></td>
+                <td><div class='calSqaure'><span class="date">26</span></div></td>
+                <td><div class='calSqaure'><span class="date">27</span></div></td>
+                <td><div class='calSqaure'><span class="date">28</span></div></td>
+            </tr>
+            <tr>
+                <td><div class='calSqaure'><span class="date">29</span></div></td>
+                <td><div class='calSqaure'><span class="date">30</span></div></td>
+                <td><div class='calSqaure'><span class="date">31</span></div></td>
+                <td><div class='calSqaure'><span class="date">&nbsp;</span></td>
+                <td><div class='calSqaure'><span class="date">&nbsp;</span></td>
+                <td><span class="date">&nbsp;</span></td>
+                <td><span class="date">&nbsp;</span></td>
+            </tr>
+        </table>
         <br>
-    </form>
-</div>
-<div id='nextPage'>
+    </div>
+    <div id="dataform">
+        <form>
+            <label for="date">Date</label>
+            <input type="date" id="date">
+            <label for="date">Time 00:00 AM/PM</label>
+            <input type="time" id="time">
+            <br>
+        </form>
+    </div>
+    <div id='nextPage'>
         <input id='confirm' type='button' value='Review Order'><span id='arrow'>▸</span>
-            </div>
-<footer id="footer"> </footer>
-<script src="scripts/General.js"></script>
-<script>
-    function getDate(){
-        let date = document.getElementById("date").value;
-        let time = document.getElementById("time").value;
-        console.log("got date!");
-        console.log(date);
-        console.log("got time!");
-        console.log(time);
-        localStorage.setItem('Date', date);
-        localStorage.setItem('Time', time);
-        location.href = "confirmation.html";
-        
-        
-        
-    }
-    document.getElementById("confirm").addEventListener("click", getDate);
-</script>
+    </div>
+    <footer id="footer"> </footer>
+    <script src="scripts/General.js"></script>
+    <script>
+        let dateChoice
+        let calArray = document.getElementsByClassName('calSqaure');
+
+        for (let i=0; i < calArray.length; i++) {
+            calArray[i].addEventListener('click', calendar);
+        }
+
+        function calendar() {
+            let content = this.innerHTML.replace('<span class="date">', '');
+            dateChoice = 'November ' + content.replace('</span>', '') + ', 2019';
+        }
+
+        function getDate() {
+            let time = document.getElementById("time").value;
+            localStorage.setItem('Date', dateChoice);
+            localStorage.setItem('Time', time);
+            location.href = "confirmation.html";
+        }
+
+        document.getElementById("confirm").addEventListener("click", getDate);
+    </script>
 </body>
+
 </html>
