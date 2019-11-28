@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Service Selection</title>
+<head>
+    <title>Service Selection</title>
 
-        <link rel='stylesheet' type='text/css' href='style/service.css'>
-    </head>
+    <link rel='stylesheet' type='text/css' href='style/service.css'>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+    
+</head>
 
-    <body>
-        <header id='header'></header>
-        <article>
-            <div id='content'>
+<body>
+    <header id='header'></header>
+    <article>
+        <div id='content'>
             <label class='checkboxContainer'>
                 <input type='checkbox'>
                 <span class='checkmark'></span>
@@ -31,15 +34,47 @@
                 <span class='checkmark'></span>
                 Service 4<span class='serviceCost'>$XX</span>
             </label>
-            </div>
-        </article>
-            
-        <div id='nextPage'>
-            <input id='confirm' type='button' value='Date and Time'><span id='arrow'>▸</span>
         </div>
+    </article>
 
-        <footer id='footer'></footer>
+    <div id='nextPage'>
+        <input id='confirm' type='button' value='Date and Time'><span id='arrow'>▸</span>
+    </div>
 
-        <script src="scripts/general.js"></script>
-    </body>
+    <footer id='footer'></footer>
+
+    <script src="scripts/general.js"></script>
+    <script>
+        // trying to load the services and their prices to load dynamically
+        function everything() {
+            db.collection("Contractors")
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        let addDiv = document.getElementById("content");
+                        console.log(doc.data());
+                        // just trying to print the services
+                        console.log(doc["Services"])
+
+                        //addDiv.innerHTML += createService(doc.data());
+                    });
+                });
+        }
+
+       
+      //  function createService(item) {
+             
+      //        for (const [key, index] of item.Services.values()) {
+      //            var data = `<label class='checkboxContainer'>
+      //          <input type='checkbox'>
+      //          <span class='checkmark'></span>` +
+      //                key + `<span class='serviceCost'>$` + index + `</span>`
+      //                    `</label>`;
+      //      }
+      //        return data     
+      //  }
+      //}
+      everything();
+    </script>
+</body>
 </html>
