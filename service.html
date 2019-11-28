@@ -6,13 +6,11 @@
     <title>Service Selection</title>
 
     <link rel='stylesheet' type='text/css' href='style/service.css'>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
 </head>
 
 <body>
     <header id='header'></header>
+
     <article>
         <div id='content'>
 
@@ -20,7 +18,7 @@
     </article>
 
     <div id='nextPage'>
-        <input id='confirm' type='button' value='Date and Time'><span id='arrow'>▸</span>
+        <input id='confirm' type='submit' value='Date and Time'><span id='arrow'>▸</span>
     </div>
 
     <footer id='footer'></footer>
@@ -59,14 +57,35 @@
                 for (service in doc.data().Services) {
                     let serviceLabel = document.createElement('label');
                     serviceLabel.setAttribute('class', 'checkboxContainer');
-                    serviceLabel.innerHTML = '<input type="checkbox"><span class="checkmark"></span>' + service + '<span class="serviceCost">$' + doc.data().Services[service] + '</span>'
+                    serviceLabel.innerHTML = '<input type="checkbox" name="service" value="' + service + '"><span class="checkmark"></span>' + service + '<span class="serviceCost">$' + doc.data().Services[service] + '</span>'
                     document.getElementById('content').appendChild(serviceLabel);
-                    console.log(service, doc.data().Services[service]);
                 }
             })
         }
 
         populateServices();
+
+        document.getElementById('confirm').onclick = goToDateTime;
+
+        // Adds the selected services to local storage and and proceeds to date / time selection
+        function goToDateTime() {
+            let services = getCheckedBoxes();
+            localStorage.setItem('Service', services);
+            console.log(services);
+            location.href = 'Calendar2019.html';
+        }
+
+        // Collects all checked boxes
+        function getCheckedBoxes() {
+            let checkboxes = document.getElementsByName('service');
+            let checked = [];
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked.push(checkboxes[i].value);
+                }
+            }
+            return checked;
+        }
     </script>
 </body>
 

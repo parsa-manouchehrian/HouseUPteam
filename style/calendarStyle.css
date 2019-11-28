@@ -87,7 +87,14 @@ th.month {
     font-size: 150%;
     color: white
 }
+
 #dataform{
     margin-left: 35%;
+}
     
+#arrow {
+    float: right;
+    font-size: 150%;
+    color: white;
+
 }

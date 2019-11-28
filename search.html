@@ -10,29 +10,30 @@
     <article>
       <form>
         <label>Search : </label>
-        <input class="form-control" />
+        <input class="form-control" id="keyword" />
         <br />
         <label>Category : </label>
-        <select class="form-control">
-          <option>data</option>
-          <option>data</option>
-          <option>data</option>
-        </select>
+        <select class="form-control" id="category"> </select>
 
         <br />
         <label>Sort by : </label>
-        <select class="form-control">
-          <option>data</option>
-          <option>data</option>
-          <option>data</option>
-        </select>
+        <select class="form-control" id="SortBy"> </select>
+        <br />
+        <br />
+        <button
+          type="button"
+          onclick="onFormSubmit(this)"
+          class="btn btn-primary float-right"
+        >
+          Search
+        </button>
       </form>
       <br />
       <h5>Top Rated Services</h5>
       <br />
 
       <div id="addDiv">
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-3 m-1">
@@ -49,7 +50,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </article>
 
@@ -58,17 +59,33 @@
     <script src="scripts/General.js"></script>
 
     <script>
-      function everything() {
-        db.collection("Contractors")
-          .get()
-          .then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-              let addDiv = document.getElementById("addDiv");
-              console.log(doc.data());
+      function onFormSubmit(evt) {
+        let ke = document.getElementById("keyword");
+        let category = document.getElementById("category");
+        let SortBy = document.getElementById("SortBy");
 
-              addDiv.innerHTML += createService(doc.data());
-            });
+        everything(ke.value, SortBy.value, category.value);
+      }
+
+      function everything(keyword, sort, category) {
+        let dataList = db.collection("Contractors").where("Name", ">=", keyword);
+
+        if (sort) {
+          dataList.orderBy(sort);
+        }
+        
+        if (category) {
+          dataList.where("Category", "==", category);
+        }
+        let addDiv = document.getElementById("addDiv");
+
+        addDiv.innerHTML = '';
+        dataList.get().then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            console.log(doc.data());
+            addDiv.innerHTML += createService(doc.data());
           });
+        });
 
         // var topUserPostsRef = database.ref("Contractors").orderByChild("Name");
         // console.log(topUserPostsRef);
@@ -78,12 +95,14 @@
         // });
 
         function createService(item) {
-          return (
+          let outPut =
             `<div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-3 m-1">
-              <img src="images/plumber.jpg" height="120" width="100" />
+              <img src="` +
+            item.picture +
+            `" height="120" width="100" />
             </div>
             <div class="col-5">
               <p>` +
@@ -91,19 +110,34 @@
             `</p>
               <p>` +
             item.Category +
-            `</p>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star activeStar"></i>
-              <i class="fa fa-star-o"></i>
+            `</p>`;
+
+          for (let i = 0; i < item.AverageRate; i++) {
+            outPut += `<i class="fa fa-star activeStar"></i>`;
+          }
+
+          for (let i = 0; i < 5 - item.AverageRate; i++) {
+            outPut += `<i class="fa fa-star-o"></i>`;
+          }
+
+          outPut += `
             </div>
           </div>
-        </div>`
-          );
+        </div>`;
+
+          return outPut;
         }
       }
-      everything();
+      everything("", "", "");
+
+      function createCategory(item) {
+        let outPut =
+          `<option value='` + item.Name + `'>` + item.Name + `</option>`;
+        return outPut;
+      }
+
+      getSampleList(createCategory, "Categories", "category");
+      getSampleList(createCategory, "SortList", "SortBy");
     </script>
   </body>
 </html>
