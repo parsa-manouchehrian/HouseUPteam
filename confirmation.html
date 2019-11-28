@@ -17,15 +17,15 @@
         <article>
             <div id='content'>
                 <h4>Review Your Order</h4>
-                <h6>Company</h6>
+                <h6>Company:</h6>
                 <p id='companyName'></p>
-                <h6>Service</h6>
+                <h6>Service:</h6>
                 <p id='service'></p>
-                <h6>Date</h6>
+                <h6>Date:</h6>
                 <p id='date'></p>
-                <h6>Time</h6>
+                <h6>Time:</h6>
                 <p id='time'></p>
-                <h6>Estimated Cost</h6>
+                <h6>Estimated Cost:</h6>
                 <p id='cost'></p>
             </div>
         </article>  
@@ -42,16 +42,16 @@
         // Reads from local storage
         let contractorID = localStorage.getItem('ContractorID');
         let contractorName = localStorage.getItem('ContractorName');
-        let service = localStorage.getItem('Service').split(',');
+        let service = localStorage.getItem('services');
         let date = localStorage.getItem('Date');
         let time = localStorage.getItem('Time');
-        let cost = localStorage.getItem('Cost');
+        let cost = "$" + localStorage.getItem('Cost');
 
         // Populates the order summary
         document.getElementById('companyName').innerHTML = contractorName;
-        for (item in service) {
-            document.getElementById('service').innerHTML += service[item] + '<br>';
-        }
+        
+        document.getElementById('service').innerHTML = service;
+        
         document.getElementById('date').innerHTML = date;
         document.getElementById('time').innerHTML = time;
         document.getElementById('cost').innerHTML = cost;

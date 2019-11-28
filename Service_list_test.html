@@ -56,12 +56,36 @@
                 for (service in doc.data().Services) {
                     let serviceLabel = document.createElement('label');
                     serviceLabel.setAttribute('class', 'checkboxContainer');
-                    serviceLabel.innerHTML = '<input type="checkbox"><span class="checkmark"></span>' + service + '<span class="serviceCost">$' + doc.data().Services[service] + '</span>'
+                    serviceLabel.innerHTML = '<input type="checkbox" id="' + service + '"><span class="checkmark"></span>' + service + '<span class="serviceCost" id="'+service +'">$' + doc.data().Services[service] + '</span>'
                     document.getElementById('content').appendChild(serviceLabel);
                     console.log(service, doc.data().Services[service]);
                 }
             })
         }
+        function chosenServices(){
+            var totalCost = 0;
+            var serviceList = [];
+            let services = contractorRef.get().then(function (doc) {
+                // goes through every box and checks if they are checked
+                for (service in doc.data().Services) {
+                    job = service;
+                    let cost = document.getElementById(job);
+                    // adds the price if they are checked
+                    if (cost.checked){
+                        totalCost += doc.data().Services[service];
+                        serviceList.push(service);
+                    }
+                }
+                console.log(totalCost);
+                console.log(serviceList);
+                localStorage.setItem('Cost',totalCost);
+                localStorage.setItem('services', serviceList);
+                location.href = "Calendar2019.html";
+            })
+            
+            
+        }
+        document.getElementById("confirm").addEventListener("click", chosenServices);
         // querySnapshot => {
         //         querySnapshot.forEach(doc => {
         //             let addDiv = document.getElementById("content");
