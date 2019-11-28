@@ -43,16 +43,13 @@
             appId: "1:980464254442:web:d2f128dca2d663c8288693",
             measurementId: "G-Z4RG137FW0"
         };
-
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
         var db = firebase.firestore();
     </script>
 
     <script>
         let contractorRef = db.collection("Contractors").doc('JPPQs9Amk90ZW7rfQ7sn');
-
         // Reads the contractor's services list to generate checkboxes
         function populateServices() {
             let services = contractorRef.get().then(function (doc) {
@@ -65,24 +62,17 @@
                 }
             })
         }
-
-
-
         // querySnapshot => {
         //         querySnapshot.forEach(doc => {
         //             let addDiv = document.getElementById("content");
         //             console.log(doc.data());
         //             // just trying to print the services
         //             console.log(doc["Services"])
-
         //addDiv.innerHTML += createService(doc.data());
         //             });
         //         });
         // }
-
-
         //  function createService(item) {
-
         //        for (const [key, index] of item.Services.values()) {
         //            var data = `<label class='checkboxContainer'>
         //          <input type='checkbox'>
@@ -90,7 +80,7 @@
         //                key + `<span class='serviceCost'>$` + index + `</span>`
         //                    `</label>`;
         //      }
-        //        return data     
+        //        return data
         //  }
         //}
         populateServices();
