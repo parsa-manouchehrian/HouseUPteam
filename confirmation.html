@@ -41,21 +41,19 @@
 
         <script>
         // Reads from local storage
-        let contractorID = localStorage.getItem('ContractorID');
-        let contractorName = localStorage.getItem('ContractorName');
+        let contractorID = localStorage.getItem('Contractor');
+        let contractorName = localStorage.getItem('Contractor');
         let service = localStorage.getItem('services');
         let date = localStorage.getItem('Date');
         let time = localStorage.getItem('Time');
-        let cost = "$" + localStorage.getItem('Cost');
+        let cost = localStorage.getItem('Cost');
 
         // Populates the order summary
         document.getElementById('companyName').innerHTML = contractorName;
-        
         document.getElementById('service').innerHTML = service;
-        
         document.getElementById('date').innerHTML = date;
         document.getElementById('time').innerHTML = time;
-        document.getElementById('cost').innerHTML = cost;
+        document.getElementById('cost').innerHTML = "$" + cost;
 
         // Submits the order when the user clicks Confirm
         document.getElementById('confirm').onclick = addOrder
