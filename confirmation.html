@@ -41,8 +41,8 @@
 
         <script>
         // Reads from local storage
-        let contractorID = localStorage.getItem('Contractor');
-        let contractorName = localStorage.getItem('Contractor');
+        let contractorID = localStorage.getItem('contractor');
+        let contractorName = localStorage.getItem('contractor');
         let service = localStorage.getItem('services');
         let date = localStorage.getItem('Date');
         let time = localStorage.getItem('Time');
@@ -78,7 +78,7 @@
                 console.error("Error adding document: ", error);
             });
 
-            location.href='search.html';
+            location.href='index.html';
         }
         </script>
     </body>
