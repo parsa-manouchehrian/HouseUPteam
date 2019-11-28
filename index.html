@@ -97,12 +97,18 @@
           });
         });
 
+<<<<<<< HEAD
         // var topUserPostsRef = database.ref("Contractors").orderByChild("Name");
         // console.log(topUserPostsRef);
         // topUserPostsRef.array.forEach(element => {
         //   let addDiv = document.getElementById("addDiv");
         //   addDiv.innerHTML += createService(element);
         // });
+=======
+        function onServiceItemClick(){
+          window.location = 'Service_list_test.html';
+        }
+>>>>>>> cc0c0ba8dd354b7364be12658c793c9c81280e98
 
         function createService(item) {
           let outPut =
@@ -123,6 +129,7 @@
             `</p>`;
 
           for (let i = 0; i < item.AverageRate; i++) {
+            // adds stars depending on rating
             outPut += `<i class="fa fa-star activeStar"></i>`;
           }
 
