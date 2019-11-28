@@ -6,6 +6,10 @@
 
         <link rel='stylesheet' type='text/css' href='style/GeneralStyle.css'>
         <link rel='stylesheet' type='text/css' href='style/confirmation.css'>
+
+        <!-- Initialize Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
     </head>
 
     <body>
@@ -34,41 +38,20 @@
 
         <script src="scripts/general.js"></script>
 
-        <!-- Initialize Firebase -->
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
-        <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
-            authDomain: "houseup-b34e1.firebaseapp.com",
-            databaseURL: "https://houseup-b34e1.firebaseio.com",
-            projectId: "houseup-b34e1",
-            storageBucket: "houseup-b34e1.appspot.com",
-            messagingSenderId: "980464254442",
-            appId: "1:980464254442:web:d2f128dca2d663c8288693",
-            measurementId: "G-Z4RG137FW0"
-        };
-        
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        var db = firebase.firestore();
-        </script>
-
         <script>
         // Reads from local storage
         let contractorID = localStorage.getItem('ContractorID');
         let contractorName = localStorage.getItem('ContractorName');
-        let service = localStorage.getItem('Service');
+        let service = localStorage.getItem('Service').split(',');
         let date = localStorage.getItem('Date');
         let time = localStorage.getItem('Time');
         let cost = localStorage.getItem('Cost');
-        
+
         // Populates the order summary
         document.getElementById('companyName').innerHTML = contractorName;
-        document.getElementById('service').innerHTML = service;
+        for (item in service) {
+            document.getElementById('service').innerHTML += service[item] + '<br>';
+        }
         document.getElementById('date').innerHTML = date;
         document.getElementById('time').innerHTML = time;
         document.getElementById('cost').innerHTML = cost;

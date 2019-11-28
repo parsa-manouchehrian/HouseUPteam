@@ -5,7 +5,12 @@
 <head>
     <title>Service Selection</title>
 
+    <link red='stylesheet' type='text/css' href='style/GeneralStyle.css'>
     <link rel='stylesheet' type='text/css' href='style/service.css'>
+
+     <!-- Initialize Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -24,29 +29,6 @@
     <footer id='footer'></footer>
 
     <script src="scripts/general.js"></script>
-
-    <!-- Initialize Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
-            authDomain: "houseup-b34e1.firebaseapp.com",
-            databaseURL: "https://houseup-b34e1.firebaseio.com",
-            projectId: "houseup-b34e1",
-            storageBucket: "houseup-b34e1.appspot.com",
-            messagingSenderId: "980464254442",
-            appId: "1:980464254442:web:d2f128dca2d663c8288693",
-            measurementId: "G-Z4RG137FW0"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        var db = firebase.firestore();
-    </script>
 
     <script>
         let contractorRef = db.collection("Contractors").doc('JPPQs9Amk90ZW7rfQ7sn');
@@ -71,7 +53,6 @@
         function goToDateTime() {
             let services = getCheckedBoxes();
             localStorage.setItem('Service', services);
-            console.log(services);
             location.href = 'Calendar2019.html';
         }
 
