@@ -65,10 +65,12 @@
 </table>
 <br>
 </div>
-<div id="data">
+<div id="dataform">
     <form>
-        <label for="date">Date and Time</label>
-        <input type = "datetime-local" id="date">
+        <label for="date">Date</label>
+        <input type = "date" id="date">
+        <label for="date">Time 00:00 AM/PM</label>
+        <input type = "time" id="time">
         <br>
     </form>
 </div>
@@ -80,9 +82,13 @@
 <script>
     function getDate(){
         let date = document.getElementById("date").value;
+        let time = document.getElementById("time").value;
         console.log("got date!");
         console.log(date);
+        console.log("got time!");
+        console.log(time);
         localStorage.setItem('Date', date);
+        localStorage.setItem('Time', time);
         location.href = "confirmation.html";
         
         
