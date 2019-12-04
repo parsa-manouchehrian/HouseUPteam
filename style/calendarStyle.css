@@ -2,76 +2,11 @@
     margin: 25px;
 }
 
-/* Styling for the title (Month and Year) of the calendar */
-.title{
-    font: x-large Verdana, Arial, Helvetica, sans-serif;
-    text-align: center;
-    display: inline;
-    margin-left: auto;
-    margin-right: auto;
-    /* height: 40px;
-    width: 20%; */
-    color: black;
-    background-color: brown;
-    }
-
 /* Styling for the footer */
 div.footer {
     font: small Verdana, Arial, Helvetica, sans-serif;
     text-align: center;
     }
-/* Styling for the overall table */
-table {
-    font: 100% Verdana, Arial, Helvetica, sans-serif;
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 80%;
-    background-color: #7B7B7B;
-    margin-left: auto;
-    margin-right: auto;
-    }
-/* Styling for the column headers (days of the week) */
-th {
-    padding: 0 0.5em;
-    text-align: center;
-    background-color: #7B7B7B;
-    color:white;
-    }
-/* Styling for the individual cells (days) */
-td  {  
-    color: white;   
-    font-size: medium;
-    width: 14%; 
-    height: 80px;
-    text-align: left;
-    border: 0.1em solid black;
-    }
-/* Styling for the date numbers */
-.date  {     
-    font-size: large;
-    padding: 0.25em 0.25em;   
-    text-align: left;
-    vertical-align: top;
-    }
-/* Class for individual days*/
-.sun {
-     color:red;
-     }
-/* Hide the month element*/
-th.month {
-    visibility: hidden;
-    display:none;
-    }
-#data{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-   
-}
-#confirm{
-    width: 20%;
-    border: 2px solid #4CAF50;
-}
 #nextPage {
     display: block;
     height: 50px;
@@ -93,24 +28,21 @@ th.month {
     font-size: 150%;
     color: white
 }
-
 #dataform{
-    margin-top: 15%;
     text-align: center;
 }
-    
+  
 #arrow {
     float: right;
     font-size: 300%;
     color: white;
 }
-
 td:hover,
 .active {
     background-color: #607D8B;
 }
-
 #dateTimeHeader {
+    padding-bottom: 15%;
     text-align: center;
     font-size: 150%;
 }
