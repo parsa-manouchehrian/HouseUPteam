@@ -1,160 +1,139 @@
 <html>
-  <head>
-    <title>SEARCH</title>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 
-  </head>
+<head>
+  <title>HouseUp</title>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
 
-  <body>
-    <header id="header"></header>
-    <article>
-      <form>
-        <label>Search : </label>
-        <input class="form-control" id="keyword" />
-        <br />
-        <label>Category : </label>
-        <select class="form-control" id="category"> </select>
-
-        <br />
-        <label>Sort by : </label>
-        <select class="form-control" id="SortBy"> </select>
-        <br />
-        <br />
-        <button
-          type="button"
-          onclick="onFormSubmit(this)"
-          class="btn btn-primary float-right"
-        >
-          Search
-        </button>
-      </form>
+<body>
+  <header id="header"></header>
+  <article>
+    <form>
+      <label>Search : </label>
+      <input class="form-control" id="keyword" />
       <br />
-      <h5>Top Rated Services</h5>
+      <label>Category : </label>
+      <select class="form-control" id="category"> </select>
+
       <br />
+      <label>Sort by : </label>
+      <select class="form-control" id="SortBy"> </select>
+      <br />
+      <br />
+      <button type="button" onclick="onFormSubmit(this)" class="btn btn-primary float-right">
+        Search
+      </button>
+    </form>
+    <br />
+    <h5>Top Rated Services</h5>
+    <br />
 
-      <div id="addDiv">
-        <!-- <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-3 m-1">
-                <img src="images/plumber.jpg" height="120" width="100" />
-              </div>
-              <div class="col-5">
-                <p>Name</p>
-                <p>Category</p>
-                <i class="fa fa-star activeStar"></i>
-                <i class="fa fa-star activeStar"></i>
-                <i class="fa fa-star activeStar"></i>
-                <i class="fa fa-star activeStar"></i>
-                <i class="fa fa-star-o"></i>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </article>
+    <div id="addDiv">
+    </div>
+  </article>
 
-    <!-- <footer></footer> -->
+  <!-- <footer></footer> -->
 
-    <script src="scripts/General.js"></script>
+  <script src="scripts/General.js"></script>
 
-    <script>
-      function onFormSubmit(evt) {
-        let ke = document.getElementById("keyword");
-        let category = document.getElementById("category");
-        let SortBy = document.getElementById("SortBy");
+  <script>
+    // Collects and applies search parameters
+    function onFormSubmit(evt) {
+      let ke = document.getElementById("keyword");
+      let category = document.getElementById("category");
+      let SortBy = document.getElementById("SortBy");
 
-        everything(ke.value, SortBy.value, category.value);
+      everything(ke.value, SortBy.value, category.value);
+    }
+
+    // Populates the page based on the user's search criteria
+    function everything(keyword, sort, category) {
+      let dataList = db.collection("Contractors");
+
+      if (sort) {
+        dataList = dataList.orderBy(sort);
       }
 
-      function everything(keyword, sort, category) {
-        let dataList = db.collection("Contractors");
+      let addDiv = document.getElementById("addDiv");
 
-        if (sort) {
-          dataList = dataList.orderBy(sort);
-        }
-
-        let addDiv = document.getElementById("addDiv");
-
-        addDiv.innerHTML = "";
-        dataList.get().then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            console.log(doc.data());
-            if (
-              doc
-                .data()
-                .Name.toLowerCase()
-                .includes(keyword.toLowerCase())
-            ) {
-              if (category) {
-                if (doc.data().Category == category) {
-                  addDiv.innerHTML += createService(doc.data());
-                }
-              } else {
+      addDiv.innerHTML = "";
+      dataList.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.data());
+          if (
+            doc
+              .data()
+              .Name.toLowerCase()
+              .includes(keyword.toLowerCase())
+          ) {
+            if (category) {
+              if (doc.data().Category == category) {
                 addDiv.innerHTML += createService(doc.data());
               }
+            } else {
+              addDiv.innerHTML += createService(doc.data());
             }
-          });
+          }
         });
+      });
 
-
-        function onServiceItemClick(){
-          window.location = 'Service_list_test.html';
-        }
-
-        function createService(item) {
-          let outPut =
-            `<div onClick='onServiceItemClick("`+item.Name+`")' class="card">
+      // Generates the service div element
+      function createService(item) {
+        let outPut =
+          `<div onClick='onServiceItemClick("` + item.Name + `")' class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-3 m-1">
               <img src="` +
-            item.picture +
-            `" height="120" width="100" />
+          item.picture +
+          `" height="120" width="100" />
             </div>
             <div class="col-5">
               <p>` +
-            item.Name +
-            `</p>
+          item.Name +
+          `</p>
               <p>` +
-            item.Category +
-            `</p>`;
+          item.Category +
+          `</p>`;
 
-          for (let i = 0; i < item.AverageRate; i++) {
-            // adds stars depending on rating
-            outPut += `<i class="fa fa-star activeStar"></i>`;
-          }
+        for (let i = 0; i < item.AverageRate; i++) {
+          // Adds stars depending on rating
+          outPut += `<i class="fa fa-star activeStar"></i>`;
+        }
 
-          for (let i = 0; i < 5 - item.AverageRate; i++) {
-            outPut += `<i class="fa fa-star-o"></i>`;
-          }
+        for (let i = 0; i < 5 - item.AverageRate; i++) {
+          outPut += `<i class="fa fa-star-o"></i>`;
+        }
 
-          outPut += `
+        outPut += `
             </div>
           </div>
         </div>`;
 
-          return outPut;
-        }
-      }
-      everything("", "", "");
-
-      function createCategory(item) {
-        let outPut =
-          `<option value='` + item.Name + `'>` + item.Name + `</option>`;
         return outPut;
       }
+    }
+    everything("", "", "");
 
-      function onServiceItemClick(item) {
-        localStorage.setItem('contractor', item);
-        window.location = "constractorProfile.html";
-      }
+    // Populates the dropdown menus
+    function createCategory(item) {
+      let outPut =
+        `<option value='` + item.Name + `'>` + item.Name + `</option>`;
+      return outPut;
+    }
 
+    // Changes the page when the user clicks a service
+    function onServiceItemClick(item) {
+      localStorage.setItem('contractor', item);
+      window.location = "constractorProfile.html";
+    }
 
-      getSampleList(createCategory, "Categories", "category");
-      getSampleList(createCategory, "SortList", "SortBy");
-    </script>
-  </body>
+    getSampleList(createCategory, "Categories", "category");
+    getSampleList(createCategory, "SortList", "SortBy");
+  </script>
+</body>
+
 </html>
