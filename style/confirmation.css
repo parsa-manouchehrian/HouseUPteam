@@ -32,3 +32,25 @@
     color: white;
     border: outset;
 }
+
+/* Styles the confirmation popup */
+#confirmationPopup {
+    display: none;
+    position: relative;
+    margin: -75% auto 0 auto;
+    height: 20%;
+    width: 75%;
+    text-align: center;
+    background-color: #607D8B;
+    color: white;
+    border: 3px solid white;
+}
+#orderPlaced {
+    position: relative;
+    top: 20%;
+    font-size: 150%;
+}
+#redirecting {
+    position: relative;
+    top: 20%;
+}
