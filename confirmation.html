@@ -39,7 +39,10 @@
         </div>
     </article>
 
-    <div id='confirmationPopup'><p id='orderPlaced'>Order Placed!</p><p id='redirecting'>Redirecting...</p></div>
+    <div id='confirmationPopup'>
+        <p id='orderPlaced'>Order Placed!</p>
+        <p id='redirecting'>Redirecting...</p>
+    </div>
 
     <div id='nextPage'>
         <input id='confirm' type='button' value='Confirm'>
@@ -68,9 +71,11 @@
         // Submits the order when the user clicks Confirm
         document.getElementById('confirm').onclick = addOrder
 
-        // Reads from local storage and adds the order to the Orders DB
+        // Reads from local storage and adds the order to the Contractors and Users DBs
         function addOrder() {
-            db.collection('Orders').add({
+            user = firebase.auth().currentUser.email;
+
+            order = {
                 ContractorID: contractorID,
                 ContractorName: contractorName,
                 Service: service,
@@ -78,18 +83,30 @@
                 Time: time,
                 Cost: cost,
                 Status: 'Active',
-                SubmissionDate: new Date(),
-            })
+                SubmissionDate: new Date()
+            },
+
+            db.collection('Contractors').doc(contractorName).collection('Orders').add(order)
                 .then(function (docRef) {
-                    console.log("Document written with ID: ", docRef.id);
+                    console.log("Document written to Orders with ID: ", docRef.id);
                     localStorage.clear();
                 })
                 .catch(function (error) {
                     console.error("Error adding document: ", error);
                 });
-            
+
+            db.collection('Users').doc(user).collection('Orders').add(order)
+                .then(function (docRef) {
+                    console.log("Document written to Users with ID: ", docRef.id);
+                    localStorage.clear();
+                })
+                .catch(function (error) {
+                    console.error("Error adding document: ", error);
+                });
+
+            // Makes the confirmation popup visible and redirects to the home page after a delay
             document.getElementById('confirmationPopup').style.display = 'block';
-            setTimeout(function() { location.href = 'index.html' }, 1000);
+            setTimeout(function () { location.href = 'index.html' }, 1000);
         }
     </script>
 </body>
