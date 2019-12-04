@@ -1,94 +1,101 @@
 <html>
-  <head>
-    <title>SEARCH</title>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-  </head>
 
-  <body>
-    <header id="header"></header>
-    <article class="container">
-      <div class="row">
-        <div class="col-4">
-          <img height="100" width="100" id="pic" />
-        </div>
-        <div class="col-8">
-          <div class="row">
-            <h5 id="Name">Contractor Name</h5>
-          </div>
-          <div class="row">
-            <p id="Category">Category</p>
-          </div>
-          <div class="row" id="stars"></div>
-        </div>
+<head>
+  <title>HouseUp</title>
+
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+</head>
+
+<body>
+  <header id="header"></header>
+  <article class="container">
+    <div class="row">
+      <div class="col-4">
+        <img height="100" width="100" id="pic" />
       </div>
-
-      <div class="row" style="margin: 10px;">
-        <p id="description"></p>
-      </div>
-
-      <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-          <button class="btn btn-success" onclick="onBookClick()">
-            Book a service
-          </button>
+      <div class="col-8">
+        <div class="row">
+          <h5 id="Name">Contractor Name</h5>
         </div>
-        <div class="col-4"></div>
+        <div class="row">
+          <p id="Category">Category</p>
+        </div>
+        <div class="row" id="stars"></div>
       </div>
-    </article>
+    </div>
 
-    <!-- <footer></footer> -->
+    <div class="row" style="margin: 10px;">
+      <p id="description"></p>
+    </div>
 
-    <script src="scripts/General.js"></script>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <button class="btn btn-success" onclick="onBookClick()">
+          Book a service
+        </button>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </article>
 
-    <script>
-      function onBookClick() {
-        var user = firebase.auth().currentUser;
-        if (user == null) {
-          login();
-        } else {
-          window.location = "service.html";
-        }
+  <!-- <footer></footer> -->
+
+  <script src="scripts/General.js"></script>
+
+  <script>
+    function onBookClick() {
+      var user = firebase.auth().currentUser;
+      if (user == null) {
+        login();
+      } else {
+        window.location = "service.html";
       }
-      //find the contractor in the databaes and get it from that
-      db.collection("Contractors")
-        .where("Name", "==", localStorage.getItem("contractor"))
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            loadItem(doc.data());
-          });
-        })
-        .catch(function(error) {});
+    }
+    //find the contractor in the databaes and get it from that
+    db.collection("Contractors")
+      .where("Name", "==", localStorage.getItem("contractor"))
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          loadItem(doc.data());
+        });
+      })
+      .catch(function (error) { });
 
-      function loadItem(item) {
-        //get elements and store it in the variables
-        let pic = document.getElementById("pic");
-        let category = document.getElementById("Category");
-        let name = document.getElementById("Name");
-        let starsPanel = document.getElementById("stars");
-        let description = document.getElementById("description");
+    function loadItem(item) {
+      //get elements and store it in the variables
+      let pic = document.getElementById("pic");
+      let category = document.getElementById("Category");
+      let name = document.getElementById("Name");
+      let starsPanel = document.getElementById("stars");
+      let description = document.getElementById("description");
 
-        //set value to each UI element
-        pic.src = item.picture;
-        category.innerText = item.Category;
-        name.innerText = item.Name;
+      document.title = item.Name;
 
-        let starHTML = "";
-        for (let i = 0; i < item.AverageRate; i++) {
-          starHTML += `<i class="fa fa-star activeStar"></i>`;
-        }
+      //set value to each UI element
+      pic.src = item.picture;
+      category.innerText = item.Category;
+      name.innerText = item.Name;
 
-        for (let i = 0; i < 5 - item.AverageRate; i++) {
-          starHTML += `<i class="fa fa-star-o"></i>`;
-        }
-
-        starsPanel.innerHTML = starHTML;
-
-        description.innerText = item.Description;
+      let starHTML = "";
+      for (let i = 0; i < item.AverageRate; i++) {
+        starHTML += `<i class="fa fa-star activeStar"></i>`;
       }
-    </script>
-  </body>
+
+      for (let i = 0; i < 5 - item.AverageRate; i++) {
+        starHTML += `<i class="fa fa-star-o"></i>`;
+      }
+
+      starsPanel.innerHTML = starHTML;
+
+      description.innerText = item.Description;
+    }
+  </script>
+</body>
+
 </html>
