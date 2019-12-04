@@ -9,8 +9,8 @@
     display: inline;
     margin-left: auto;
     margin-right: auto;
-    height: 40px;
-    width: 20%;
+    /* height: 40px;
+    width: 20%; */
     color: black;
     background-color: brown;
     }
@@ -80,6 +80,7 @@ th.month {
     position: fixed;
     bottom: 0px;
     background-color: #607D8B;
+    border: outset;
 }
 #confirm {
     display: block;
@@ -94,16 +95,22 @@ th.month {
 }
 
 #dataform{
-    margin-left: 35%;
+    margin-top: 15%;
+    text-align: center;
 }
     
 #arrow {
     float: right;
-    font-size: 150%;
+    font-size: 300%;
     color: white;
 }
 
 td:hover,
 .active {
     background-color: #607D8B;
+}
+
+#dateTimeHeader {
+    text-align: center;
+    font-size: 150%;
 }
