@@ -8,4 +8,4 @@ calendar.html: allows a user to day when they want a service
 Style folder:
 contains all the css files for each page
 Scripts folder:
-holds javadcript files needed for bootstrap
+holds javascript files needed for bootstrap
