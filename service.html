@@ -3,7 +3,9 @@
 <html>
 
 <head>
-    <title>Service Selection</title>
+    <title>HouseUp</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <link rel='stylesheet' type='text/css' href='style/service.css'>
 
@@ -14,9 +16,12 @@
 
 <body>
     <header id='header'></header>
+
+    <h1 id='serviceHeader'>Select Services</h1>
+
     <article>
         <div id='content'>
-            
+
         </div>
     </article>
 
@@ -40,7 +45,7 @@
                     // Adds checkbox element into page for each service
                     let serviceLabel = document.createElement('label');
                     serviceLabel.setAttribute('class', 'checkboxContainer');
-                    serviceLabel.innerHTML = '<input type="checkbox" id="' + service + '"><span class="checkmark"></span>' + service + '<span class="serviceCost" id="'+service +'">$' + doc.data().Services[service] + '</span>'
+                    serviceLabel.innerHTML = '<input type="checkbox" id="' + service + '"><span class="checkmark"></span>' + service + '<span class="serviceCost" id="' + service + '">$' + doc.data().Services[service] + '</span>'
                     document.getElementById('content').appendChild(serviceLabel);
                     console.log(service, doc.data().Services[service]);
                 }
@@ -48,7 +53,7 @@
         }
 
         // Checks which services were chosen
-        function chosenServices(){
+        function chosenServices() {
             var totalCost = 0;
             var serviceList = [];
             let services = contractorRef.get().then(function (doc) {
@@ -57,7 +62,7 @@
                     job = service;
                     let cost = document.getElementById(job);
                     // Adds the price if they are checked
-                    if (cost.checked){
+                    if (cost.checked) {
                         totalCost += doc.data().Services[service];
                         serviceList.push(service);
                     }
@@ -67,12 +72,12 @@
                 console.log(serviceList);
 
                 // Puts data into local storage
-                localStorage.setItem('Cost',totalCost);
+                localStorage.setItem('Cost', totalCost);
                 localStorage.setItem('services', serviceList);
                 location.href = "Calendar2019.html";
             })
-            
-            
+
+
         }
 
         // Saves the data when the bottom button is clicked

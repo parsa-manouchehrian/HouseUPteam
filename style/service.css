@@ -1,9 +1,13 @@
 #content {
     margin: 25px;
 }
-
 .serviceCost {
     float: right;
+}
+#serviceHeader {
+    padding-bottom: 15%;
+    text-align: center;
+    font-size: 150%;
 }
 
 /* Styles the nextPage div */
@@ -15,6 +19,7 @@
     position: fixed;
     bottom: 0px;
     background-color: #607D8B;
+    border: outset;
 }
 
 /* Styles the invisible button over the nextPage div */
@@ -29,10 +34,9 @@
     font-size: 150%;
     color: white
 }
-
 #arrow {
     float: right;
-    font-size: 150%;
+    font-size: 300%;
     color: white;
 }
 
@@ -76,7 +80,4 @@
     color:white;
     top: 1px;
     left: 6px;
-}
-body{
-    background-color: ;
 }

@@ -1,29 +1,24 @@
 body{
     background-color: #E5E5E5;
 }
-
 header{
     margin: 25px;
     height: 50px;
     background-color: #FFC107;
 }
-
 #menu{
     font-size: 30px;
     margin-top: 10px;
 }
-
 #logo{
     font-size: 30px;
     font-weight: 500;
     color: white;
     margin-left: 20px;
 }
-
 article{
     margin: 10px;
 }
-
 .activeStar{
     color: #FFC107;
 
