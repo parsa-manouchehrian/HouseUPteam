@@ -1,2 +1,5 @@
 .DS_Store
 .vs
+.idea/vcs.xml
+.idea/HouseUPteam.iml
+*.xml
