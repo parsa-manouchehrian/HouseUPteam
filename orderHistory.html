@@ -1,85 +1,86 @@
 <html>
-  <head>
-    <title>Order History</title>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
 
-  <body>
-    <header id="header"></header>
-    <article>
-      <div id="content">
-        <h1 id="confirmationHeader">Review Your Orders</h1>
+<head>
+  <title>Order History</title>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>Contractor Name</td>
-              <td>Service</td>
-              <td>Date</td>
-              <td>Estimated Cost</td>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            
-          </tbody>
-        </table>
+<body>
+  <header id="header"></header>
+  <article>
+    <div id="content">
+      <h1 id="confirmationHeader">Review Your Orders</h1>
 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Contractor Name</td>
+            <td>Service</td>
+            <td>Date</td>
+            <td>Estimated Cost</td>
+          </tr>
+        </thead>
+        <tbody id="tbody">
 
-      </div>
-    </article>
-
-    <!-- <footer></footer> -->
-
-    <script src="scripts/General.js"></script>
-
-    <script>
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          console.log(user.email);
-          db.collection("Users")
-            .doc(user.email)
-            .collection("Orders")
-            .get()
-            .then(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                let tbody = document.getElementById("tbody");
-                let tr = document.createElement('tr');
-                doc = doc.data();
-                console.log(doc);
-              
-                
-                let contractorName = doc.ContractorName;
-                let service = doc.Service;
-                let date = doc.Date;
-                let time = doc.Time;
-                let cost = doc.Cost;
-
-                let td1 = document.createElement('td');
-                let td2 = document.createElement('td');
-                let td3 = document.createElement('td');
-                let td4 = document.createElement('td');
-                let td5 = document.createElement('td');
+        </tbody>
+      </table>
 
 
-                // Populates the order summary
-                td1.innerHTML = contractorName;
-                td2.innerHTML = service;
-                td3.innerHTML = date;
-                td5.innerHTML = "$" + cost;
+    </div>
+  </article>
 
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                tr.appendChild(td5);
-                tbody.appendChild(tr);
+  <script src="scripts/General.js"></script>
 
-              });
+  <script>
+    // Reads from the Orders collection in the user document and populates their order history
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log(user.email);
+        db.collection("Users")
+          .doc(user.email)
+          .collection("Orders")
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              let tbody = document.getElementById("tbody");
+              let tr = document.createElement('tr');
+              doc = doc.data();
+              console.log(doc);
+
+
+              let contractorName = doc.ContractorName;
+              let service = doc.Service;
+              let date = doc.Date;
+              let time = doc.Time;
+              let cost = doc.Cost;
+
+              let td1 = document.createElement('td');
+              let td2 = document.createElement('td');
+              let td3 = document.createElement('td');
+              let td4 = document.createElement('td');
+              let td5 = document.createElement('td');
+
+
+              // Populates the order summary
+              td1.innerHTML = contractorName;
+              td2.innerHTML = service;
+              td3.innerHTML = date;
+              td5.innerHTML = "$" + cost;
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td5);
+              tbody.appendChild(tr);
+
             });
-        }
-      });
-    </script>
-  </body>
+          });
+      }
+    });
+  </script>
+</body>
+
 </html>

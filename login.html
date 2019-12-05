@@ -1,72 +1,70 @@
 <html>
-  <head>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
-    />
-  </head>
 
-  <body>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+<head>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+</head>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<body>
+  <div id="firebaseui-auth-container"></div>
+  <div id="loader">Loading...</div>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 
-    <script>
-      console.log(localStorage.getItem('backURL'));
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
-        authDomain: "houseup-b34e1.firebaseapp.com",
-        databaseURL: "https://houseup-b34e1.firebaseio.com",
-        projectId: "houseup-b34e1",
-        storageBucket: "houseup-b34e1.appspot.com",
-        messagingSenderId: "980464254442",
-        appId: "1:980464254442:web:d2f128dca2d663c8288693",
-        measurementId: "G-Z4RG137FW0"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
+  <script>
+    console.log(localStorage.getItem('backURL'));
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCo0nUgjDTbPTZGp1YIbjP2mKRQ3pNtQao",
+      authDomain: "houseup-b34e1.firebaseapp.com",
+      databaseURL: "https://houseup-b34e1.firebaseio.com",
+      projectId: "houseup-b34e1",
+      storageBucket: "houseup-b34e1.appspot.com",
+      messagingSenderId: "980464254442",
+      appId: "1:980464254442:web:d2f128dca2d663c8288693",
+      measurementId: "G-Z4RG137FW0"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 
-    <script>
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      var uiConfig = {
-        callbacks: {
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
-            return true;
-          },
-          uiShown: function() {
-            // The widget is rendered.
-            // Hide the loader.
-            document.getElementById("loader").style.display = "none";
-          }
+  <script>
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
         },
-        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-        signInFlow: "popup",
-        signInSuccessUrl: localStorage.getItem('backURL'),
-        signInOptions: [
-          // Leave the lines as is for the providers you want to offer your users.
-          firebase.auth.EmailAuthProvider.PROVIDER_ID
-        ],
-        // Terms of service url.
-        tosUrl: "<your-tos-url>",
-        // Privacy policy url.
-        privacyPolicyUrl: "<your-privacy-policy-url>"
-      };
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById("loader").style.display = "none";
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: "popup",
+      signInSuccessUrl: localStorage.getItem('backURL'),
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+      tosUrl: "<your-tos-url>",
+      // Privacy policy url.
+      privacyPolicyUrl: "<your-privacy-policy-url>"
+    };
 
-      ui.start('#firebaseui-auth-container', uiConfig);
-    </script>
-  </body>
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+</body>
+
 </html>

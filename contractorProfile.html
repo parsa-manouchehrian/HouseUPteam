@@ -43,11 +43,10 @@
     </div>
   </article>
 
-  <!-- <footer></footer> -->
-
   <script src="scripts/General.js"></script>
 
   <script>
+    // Forces the user to log in if they have not, otherwise brings them to book a service
     function onBookClick() {
       var user = firebase.auth().currentUser;
       if (user == null) {
@@ -56,7 +55,8 @@
         window.location = "service.html";
       }
     }
-    //find the contractor in the databaes and get it from that
+
+    // Finds the contractor in the database and get it from that
     db.collection("Contractors")
       .where("Name", "==", localStorage.getItem("contractor"))
       .get()

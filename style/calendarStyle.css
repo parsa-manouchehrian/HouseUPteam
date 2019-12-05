@@ -31,10 +31,9 @@ div.footer {
 #dataform{
     text-align: center;
 }
-  
 #arrow {
     float: right;
-    font-size: 300%;
+    font-size: 200%;
     color: white;
 }
 td:hover,

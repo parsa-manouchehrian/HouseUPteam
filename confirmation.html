@@ -86,6 +86,7 @@
                 SubmissionDate: new Date()
             },
 
+            // Writes to the Contractors collection
             db.collection('Contractors').doc(contractorName).collection('Orders').add(order)
                 .then(function (docRef) {
                     console.log("Document written to Orders with ID: ", docRef.id);
@@ -95,6 +96,7 @@
                     console.error("Error adding document: ", error);
                 });
 
+            // Writes to the Users collection
             db.collection('Users').doc(user).collection('Orders').add(order)
                 .then(function (docRef) {
                     console.log("Document written to Users with ID: ", docRef.id);
