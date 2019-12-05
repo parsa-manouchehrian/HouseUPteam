@@ -28,7 +28,7 @@
       </button>
     </form>
     <br />
-    <h5>Top Rated Services</h5>
+    <h5 id="resultTitle">Top Rated Services</h5>
     <br />
 
     <div id="addDiv">
@@ -45,7 +45,9 @@
       let ke = document.getElementById("keyword");
       let category = document.getElementById("category");
       let SortBy = document.getElementById("SortBy");
+      let resultTitle = document.getElementById("resultTitle");
 
+      resultTitle.innerText = "Search Result";
       everything(ke.value, SortBy.value, category.value);
     }
 
